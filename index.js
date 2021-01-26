@@ -1,4 +1,3 @@
-const { debug } = require('console');
 const fs = require('fs');
 const parser = require('xml2json');
 
@@ -9,10 +8,13 @@ fs.readFile( './mailFilters.xml', function(err, data) {
       const from = item['apps:property'].filter(item => item.name === 'from');
       if (label.length) {
         let labelVal =label[0].value;
+        let fromVal = from[0].value.split(' OR ')
         if (!accum[labelVal]) {
-          accum[labelVal] = ""
+          accum[labelVal] = ''
         }
-        accum[labelVal] = accum[labelVal] + from[0].value;
+        console.log(`Label: ${labelVal}`);
+        console.log(`Length: ${fromVal.length}`);
+        accum[labelVal] = accum[labelVal] + `${accum[labelVal] !== '' ? ' OR ' : ''}` + fromVal.join(' OR ');
       }
       return accum
     }, {})
