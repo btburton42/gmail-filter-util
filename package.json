@@ -1,0 +1,14 @@
+{
+  "name": "mail-util",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "parse": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "xml2json": "^0.12.0"
+  }
+}
